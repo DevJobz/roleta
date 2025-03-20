@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Roleta de Brindes - Sebrae</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <!-- A roleta (1 elemento com conic-gradient) -->
+            <div class="roleta" id="roleta">
+                <!-- Linhas divisórias (bordas brancas) a cada 45° -->
+                <div class="divisor" style="transform: rotate(0deg)"></div>
+                <div class="divisor" style="transform: rotate(45deg)"></div>
+                <div class="divisor" style="transform: rotate(90deg)"></div>
+                <div class="divisor" style="transform: rotate(135deg)"></div>
+                <div class="divisor" style="transform: rotate(180deg)"></div>
+                <div class="divisor" style="transform: rotate(225deg)"></div>
+                <div class="divisor" style="transform: rotate(270deg)"></div>
+                <div class="divisor" style="transform: rotate(315deg)"></div>
+
+                <!-- Textos/imagens para cada fatia, no centro do setor (22.5°, 67.5°, etc.) -->
+                <div class="texto-slice" style="transform: rotate(22.5deg)">
+                    <div class="texto" style="transform: rotate(-22.5deg)">
+                        Não foi dessa vez...
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(67.5deg)">
+                    <div class="texto" style="transform: rotate(-67.5deg)">
+                        <img src="copo.png" alt="Copo" class="slice-img" />
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(112.5deg)">
+                    <div class="texto" style="transform: rotate(-112.5deg)">
+                        Não foi dessa vez...
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(157.5deg)">
+                    <div class="texto" style="transform: rotate(-157.5deg)">
+                        <img
+                            src="chaveiro.png"
+                            alt="Chaveiro"
+                            class="slice-img"
+                        />
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(202.5deg)">
+                    <div class="texto" style="transform: rotate(-202.5deg)">
+                        Não foi dessa vez...
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(247.5deg)">
+                    <div class="texto" style="transform: rotate(-247.5deg)">
+                        <img src="agenda.png" alt="Agenda" class="slice-img" />
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(292.5deg)">
+                    <div class="texto" style="transform: rotate(-292.5deg)">
+                        Não foi dessa vez...
+                    </div>
+                </div>
+                <div class="texto-slice" style="transform: rotate(337.5deg)">
+                    <div class="texto" style="transform: rotate(-337.5deg)">
+                        <img src="todos.png" alt="Todos" class="slice-img" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seta apontando para baixo (abre modal dos macetes) -->
+            <div class="seta" id="seta"></div>
+
+            <!-- Botão redondo de "play" no centro (fixo) -->
+            <div class="botao-centro" id="girar">
+                <span class="play-icon">&#9654;</span>
+            </div>
+
+            <!-- Contador de giros -->
+            <div class="contador">
+                Giros realizados: <span id="contador">0</span>
+            </div>
+
+            <!-- Estatísticas -->
+            <div id="stats" class="stats">
+                <p>Copo: <span id="stat-copo">0</span></p>
+                <p>Chaveiro: <span id="stat-chaveiro">0</span></p>
+                <p>Agenda: <span id="stat-agenda">0</span></p>
+                <p>Todos os Brindes: <span id="stat-todos">0</span></p>
+                <p>Perdedores: <span id="stat-perdeu">0</span></p>
+            </div>
+        </div>
+
+        <!-- Modal de resultado (aparece após o giro) -->
+        <div id="modal-resultado" class="modal">
+            <div class="modal-conteudo">
+                <span id="modal-texto"></span>
+            </div>
+        </div>
+
+        <!-- Modal para inserção do telefone -->
+        <div id="modal-phone" class="modal">
+            <div class="modal-conteudo">
+                <h2>Informe seu número de telefone</h2>
+                <input
+                    type="tel"
+                    id="phoneInput"
+                    placeholder="(xx) xxxxx-xxxx"
+                />
+                <button id="confirmPhone">Confirmar</button>
+            </div>
+        </div>
+
+        <!-- Modal para ativação dos macetes -->
+        <div id="modal-cheat" class="modal">
+            <div class="modal-conteudo">
+                <h2>Selecione o macete</h2>
+                <select id="cheatSelect">
+                    <option value="Normal">Normal</option>
+                    <option value="Copo">Copo</option>
+                    <option value="Chaveiro">Chaveiro</option>
+                    <option value="Agenda">Agenda</option>
+                    <option value="Todos">Todos</option>
+                    <option value="Perder">Perder</option>
+                </select>
+                <div class="botoes-modal">
+                    <button id="confirmCheat">Confirmar</button>
+                    <button id="closeCheat">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Efeito de confetes (ao ganhar) -->
+        <div id="efeito-confetes" class="efeito-confetes"></div>
+
+        <!-- Efeito de perder (tela vermelha) -->
+        <div id="efeito-perdeu" class="efeito-perdeu"></div>
+
+        <!-- Áudios -->
+        <audio id="somGiro" src="giro.mp3" preload="auto"></audio>
+        <audio id="somGanho" src="ganho.mp3" preload="auto"></audio>
+
+        <script src="script.js"></script>
+    </body>
+</html>

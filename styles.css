@@ -1,0 +1,225 @@
+:root {
+    --cor-fundo: #000;
+    --cor-texto: #fff;
+}
+
+/* Estilos gerais */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Ajuste na altura total do container para caber roleta + estatísticas */
+.container {
+    position: relative;
+    width: 300px;
+    height: 520px; /* Ajuste conforme necessário */
+    text-align: center;
+}
+
+/* Roleta com conic-gradient (inicia a partir de -90deg) */
+.roleta {
+    position: absolute;
+    top: 60px; /* espaço para a seta */
+    transform: translateX(-50%);
+    width: 300px;
+    left: -5px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    background: conic-gradient(
+        from -90deg,
+        red 0deg 45deg,
+        blue 45deg 90deg,
+        red 90deg 135deg,
+        purple 135deg 180deg,
+        red 180deg 225deg,
+        green 225deg 270deg,
+        red 270deg 315deg,
+        gold 315deg 360deg
+    );
+    transition: transform 10s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transform: rotate(0deg);
+}
+
+/* Divisórias */
+.divisor {
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background-color: #fff;
+    top: 150px;
+    left: 150px;
+    transform-origin: top center;
+}
+
+/* Fatias (textos/imagens) */
+.texto-slice {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 0;
+    left: 0;
+    transform-origin: 150px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.texto-slice .texto {
+    margin-top: 20px;
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--cor-texto);
+}
+
+.slice-img {
+    max-width: 70px;
+    max-height: 50px;
+}
+
+/* Seta (ponteiro) */
+.seta {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 30px solid #fff;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Botão central */
+.botao-centro {
+    position: absolute;
+    top: calc(61.3px + 150px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 11;
+}
+.botao-centro:hover {
+    background-color: #ffffff;
+}
+
+.play-icon:hover {
+    color: #000000;
+    font-size: 22px;
+    margin-left: 5.5px;
+    margin-bottom: 2px;
+}
+.play-icon {
+    color: #5f02d8;
+    font-size: 22px;
+    margin-left: 5.5px;
+    margin-bottom: 2px;
+}
+
+/* Contador de giros (fica um pouco acima das estatísticas) */
+.contador {
+    position: absolute;
+    bottom: 3px; /* Para ficar acima da área de estatísticas */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: var(--cor-texto);
+}
+
+/* Bloco das estatísticas */
+.stats {
+    position: absolute;
+    bottom: 19px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1; /* Dá espaçamento vertical entre as linhas */
+}
+
+/* Cada parágrafo de estatística */
+.stats p {
+    margin: 6px 0; /* Espaçamento vertical entre cada linha */
+}
+
+/* Modal genérico */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    color: var(--cor-texto);
+    z-index: 1000;
+    text-align: center;
+}
+.modal h2 {
+    margin-top: 0;
+}
+.modal input[type='tel'] {
+    padding: 10px;
+    font-size: 16px;
+    width: 80%;
+    margin: 10px 0;
+}
+.modal button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+.botoes-modal {
+    margin-top: 10px;
+}
+
+/* Efeito de confetes */
+.efeito-confetes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('confetes.gif') center/cover no-repeat;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 999;
+}
+
+/* Efeito de perder (apenas a tela vermelha) */
+.efeito-perdeu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 998;
+}
